@@ -20,7 +20,7 @@ namespace kanban_backend.Controllers;
 
         public IActionResult Post([FromRoute]int num1, [FromBody]int num2)
         {
-            return Ok(num1+num2);
+            return Ok(num1*num2);
         }
     }   
   
