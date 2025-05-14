@@ -1,8 +1,17 @@
-var builder = WebApplication.CreateBuilder(args);
+using kanban_backend.Domain.Interfaces;
+using kanban_backend.Infrastructure.Adapters.Repositories;
+using kanban_backend.Infrastructure.Data.Context;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+
+var builder = WebApplication.CreateSlimBuilder(args);
 
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+
+
 
 // Add services to the container
 builder.Services.AddControllers();
@@ -16,6 +25,16 @@ builder.Services.AddSwaggerGen(options =>
         Description = "Documentación de la API generada con Swagger en .NET 9"
     });
 });
+builder.Services.AddDbContext<ApplicationDbContext> ((serviceProvider,options) =>
+{
+    var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+    options.UseNpgsql(connectionString);
+    
+});
+builder.Services.AddScoped<ICarreraRepository, CarreraRepository>();
+//Con todos los repositorio
+
+
 
 var app = builder.Build();
 
@@ -30,12 +49,9 @@ if (app.Environment.IsDevelopment())
     });
 }
 
-app.UseHttpsRedirection();
-app.UseRouting();
-
 app.UseAuthorization();
 
-app.MapStaticAssets();
+
 
 app.MapControllers();
 

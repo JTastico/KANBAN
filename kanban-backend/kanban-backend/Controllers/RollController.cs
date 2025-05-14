@@ -1,4 +1,6 @@
 
+using kanban_backend.Domain.Interfaces;
+using kanban_backend.Infrastructure.Data.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace kanban_backend.Controllers;
@@ -8,19 +10,23 @@ namespace kanban_backend.Controllers;
     [Route("api/[controller]")]
     public class RoleController : ControllerBase
     {
-        [HttpGet]
-        public IActionResult Get()
+        ICarreraRepository carreraRepository;
+        public RoleController(ICarreraRepository carreraRepository)
         {
-            return Ok();
+            this.carreraRepository = carreraRepository;
+        }
+        [HttpGet]
+        public async Task<IActionResult> Get()
+        {
+            return Ok(await carreraRepository.GetAllAsync());
+        }
+        [HttpPost]
+        public async Task<IActionResult> Create([FromBody] Carrera carrera)
+        {
+            return Ok(await carreraRepository.AddAsync(carrera));
         }
         
         
           
-        [HttpPost( "{num1}")]
-
-        public IActionResult Post([FromRoute]int num1, [FromBody]int num2)
-        {
-            return Ok(num1*num2);
-        }
     }   
   
