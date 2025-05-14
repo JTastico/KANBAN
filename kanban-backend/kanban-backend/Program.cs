@@ -34,6 +34,14 @@ builder.Services.AddDbContext<ApplicationDbContext> ((serviceProvider,options) =
 builder.Services.AddScoped<ICarreraRepository, CarreraRepository>();
 //builder clase
 builder.Services.AddScoped<IClaseRepository, ClaseRepository>();
+//builder comentarios
+builder.Services.AddScoped<IComentarioRepository, ComentarioRepository>();
+//builder grupos
+builder.Services.AddScoped<IGrupoRepository, GrupoRepository>();
+//builder historial
+builder.Services.AddScoped<IHistorialMovRepository, HistorialMovRepository>();
+//builder Persona
+builder.Services.AddScoped<IPersonaRepository, PersonaRepository>();
 //Con todos los repositorio
 
 
