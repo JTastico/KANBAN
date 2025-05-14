@@ -32,6 +32,8 @@ builder.Services.AddDbContext<ApplicationDbContext> ((serviceProvider,options) =
     
 });
 builder.Services.AddScoped<ICarreraRepository, CarreraRepository>();
+//builder clase
+builder.Services.AddScoped<IClaseRepository, ClaseRepository>();
 //Con todos los repositorio
 
 
