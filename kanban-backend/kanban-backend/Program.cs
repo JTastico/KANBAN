@@ -42,7 +42,16 @@ builder.Services.AddScoped<IGrupoRepository, GrupoRepository>();
 builder.Services.AddScoped<IHistorialMovRepository, HistorialMovRepository>();
 //builder Persona
 builder.Services.AddScoped<IPersonaRepository, PersonaRepository>();
-//Con todos los repositorio
+//builder Proyecto
+builder.Services.AddScoped<IProyectoRepository, ProyectoRepository>();
+//builder Rol
+builder.Services.AddScoped<IRolRepository, RolRepository>();
+//builder Tareas
+builder.Services.AddScoped<ITareasRepository, TareasRepository>();
+//builder UserRol
+builder.Services.AddScoped<IUserRolRepository, UserRolRepository>();
+//builder Usuario
+builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 
 
 
