@@ -7,4 +7,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\kanban-backend.Domain\kanban-backend.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
