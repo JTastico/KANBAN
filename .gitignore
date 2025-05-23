@@ -7,3 +7,4 @@ kanban-backend/kanban-backend/bin
 kanban-backend/kanban-backend.Infrastructure/bin
 kanban-backend/kanban-backend.Domain/bin
 .DS_Store
+kanban-backend/kanban-backend.Application/bin
