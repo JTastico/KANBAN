@@ -1,3 +1,4 @@
+using kanban_backend.Application.Services;
 using kanban_backend.Domain.Interfaces;
 using kanban_backend.Infrastructure.Adapters.Repositories;
 using kanban_backend.Infrastructure.Data.Context;
@@ -52,6 +53,24 @@ builder.Services.AddScoped<ITareasRepository, TareasRepository>();
 builder.Services.AddScoped<IUserRolRepository, UserRolRepository>();
 //builder Usuario
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+
+//Services
+//builder Service Clase
+builder.Services.AddScoped<ClaseService>();
+//builder Service comentarios
+builder.Services.AddScoped<ComentarioService>();
+//builder Seervice Grupo
+builder.Services.AddScoped<GrupoService>();
+//builder historial
+builder.Services.AddScoped<HistorialMovService>();
+//builder persona service
+builder.Services.AddScoped<PersonaService>();
+// builder Proyecto service
+builder.Services.AddScoped<ProyectoService>();
+// buider Rol service
+builder.Services.AddScoped<RolService>();
+//builder Tareas service
+builder.Services.AddScoped<TareasService>();
 
 
 

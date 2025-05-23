@@ -82,6 +82,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\kanban-backend.Application\kanban-backend.Application.csproj" />
       <ProjectReference Include="..\kanban-backend.Infrastructure\kanban-backend.Infrastructure.csproj" />
     </ItemGroup>
 
