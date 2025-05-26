@@ -11,9 +11,9 @@ public partial class Tareas
 
     public string? Descripcion { get; set; }
 
-    public DateOnly? FechaCreacion { get; set; }
+    public DateTime? FechaCreacion { get; set; }
 
-    public DateOnly? FechaEntrega { get; set; }
+    public DateTime? FechaEntrega { get; set; }
 
     public int? IdEstado { get; set; }
 

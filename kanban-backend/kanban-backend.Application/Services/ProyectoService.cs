@@ -1,3 +1,5 @@
+using System.Runtime.InteropServices.JavaScript;
+using kanban_backend.Application.Dtos;
 using kanban_backend.Domain.Interfaces;
 using kanban_backend.Infrastructure.Data.Entities;
 
@@ -22,10 +24,24 @@ namespace kanban_backend.Application.Services
             return await _repository.GetByIdAsync(id);
         }
 
-        public async Task<Proyecto> CreateAsync(Proyecto proyecto)
+        public async Task<Proyecto> CreateAsync(ProyectoDTO dto)
         {
-            proyecto.FechaInicio ??= DateOnly.FromDateTime(DateTime.UtcNow);
-            return await _repository.AddAsync(proyecto);
+            var data = new Proyecto();
+            data.Descripcion = dto.Descripcion;
+            data.Nombre = dto.Nombre;
+            data.FechaFin = dto.FechaFin;
+            data.FechaInicio = dto.FechaInicio ?? DateTime.Now;
+            data.IdLider = dto.IdLider;
+            
+            var response = await _repository.AddAsync(data);
+            //aqui armas el dto que necesita el proximo servicio
+            //llamas al proximo servicio -> serviceSiguiente.Agreegar(dtoNuevo);
+            
+            
+            //aqui creo el primero
+            //aqui llamas al segundo
+
+            return response;
         }
 
         public async Task UpdateAsync(Proyecto proyecto)

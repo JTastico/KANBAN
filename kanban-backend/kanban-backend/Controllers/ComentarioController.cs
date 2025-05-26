@@ -1,3 +1,4 @@
+using kanban_backend.Application.Dtos;
 using kanban_backend.Application.Services;
 using kanban_backend.Infrastructure.Data.Entities;
 using Microsoft.AspNetCore.Mvc;
@@ -8,31 +9,31 @@ namespace kanban_backend.Controllers
     [Route("api/[controller]")]
     public class ComentarioController : ControllerBase
     {
-        private readonly ComentarioService _comentarioService;
+        private readonly ComentarioService _service;
 
         public ComentarioController(ComentarioService comentarioService)
         {
-            _comentarioService = comentarioService;
+            _service = comentarioService;
         }
 
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            return Ok(await _comentarioService.GetAllAsync());
+            return Ok(await _service.GetAllAsync());
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            var comentario = await _comentarioService.GetByIdAsync(id);
+            var comentario = await _service.GetByIdAsync(id);
             if (comentario == null) return NotFound();
             return Ok(comentario);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] Comentario comentario)
+        public async Task<IActionResult> Create([FromBody] ComentarioDTO comentario)
         {
-            var nuevo = await _comentarioService.CreateAsync(comentario);
+            var nuevo = await _service.CreateAsync(comentario);
             return CreatedAtAction(nameof(Get), new { id = nuevo.Id }, nuevo);
         }
 
@@ -40,14 +41,14 @@ namespace kanban_backend.Controllers
         public async Task<IActionResult> Update(int id, [FromBody] Comentario comentario)
         {
             if (id != comentario.Id) return BadRequest();
-            await _comentarioService.UpdateAsync(comentario);
+            await _service.UpdateAsync(comentario);
             return NoContent();
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            await _comentarioService.DeleteAsync(id);
+            await _service.DeleteAsync(id);
             return NoContent();
         }
     }

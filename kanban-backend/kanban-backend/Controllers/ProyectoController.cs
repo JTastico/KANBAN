@@ -1,3 +1,4 @@
+using kanban_backend.Application.Dtos;
 using kanban_backend.Application.Services;
 using kanban_backend.Infrastructure.Data.Entities;
 using Microsoft.AspNetCore.Mvc;
@@ -30,10 +31,11 @@ namespace kanban_backend.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] Proyecto proyecto)
+        public async Task<IActionResult> Create([FromBody] ProyectoDTO proyecto)
         {
             var creado = await _service.CreateAsync(proyecto);
-            return CreatedAtAction(nameof(Get), new { id = creado.Id }, creado);
+            //return CreatedAtAction(nameof(Get), new { id = creado.Id }, creado);
+            return Ok(creado);
         }
 
         [HttpPut("{id}")]

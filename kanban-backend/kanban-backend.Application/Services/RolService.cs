@@ -1,3 +1,4 @@
+using kanban_backend.Application.Dtos;
 using kanban_backend.Domain.Interfaces;
 using kanban_backend.Infrastructure.Data.Entities;
 
@@ -22,10 +23,15 @@ namespace kanban_backend.Application.Services
             return await _repository.GetByIdAsync(id);
         }
 
-        public async Task<Rol> CreateAsync(Rol rol)
+        public async Task<Rol> CreateAsync(RollDTO dto)
         {
-            rol.Estatus ??= true; // Asignar estatus activo por defecto si no se define
-            return await _repository.AddAsync(rol);
+            var data = new Rol();
+            data.Nombre = dto.Nombre;
+            data.Descripcion = dto.Descripcion;
+            data.Estatus = dto.Estatus;
+            
+            var response = await _repository.AddAsync(data);
+            return response;
         }
 
         public async Task UpdateAsync(Rol rol)

@@ -21,7 +21,7 @@ public partial class Persona
 
     public string? CorreoPersonal { get; set; }
 
-    public DateOnly? FechaRegistro { get; set; }
+    public DateTime? FechaRegistro { get; set; }
 
     public virtual ICollection<Usuario> Usuario { get; set; } = new List<Usuario>();
 }

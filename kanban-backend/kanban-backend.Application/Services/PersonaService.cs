@@ -1,3 +1,4 @@
+using kanban_backend.Application.Dtos;
 using kanban_backend.Domain.Interfaces;
 using kanban_backend.Infrastructure.Data.Entities;
 
@@ -22,10 +23,19 @@ namespace kanban_backend.Application.Services
             return await _repository.GetByIdAsync(id);
         }
 
-        public async Task<Persona> CreateAsync(Persona persona)
+        public async Task<Persona> CreateAsync(PersonaDTO dto)
         {
-            persona.FechaRegistro ??= DateOnly.FromDateTime(DateTime.UtcNow);
-            return await _repository.AddAsync(persona);
+            var data = new Persona();
+            data.Nombre = dto.Nombre;
+            data.Apellido = dto.Apellido;
+            data.Dni = dto.Dni;
+            data.Genero = dto.Genero;
+            data.Telefono = dto.Telefono;
+            data.Direccion = dto.Direccion;
+            data.CorreoPersonal = dto.CorreoPersonal;
+            
+            var response = await _repository.AddAsync(data);
+            return response;
         }
 
         public async Task UpdateAsync(Persona persona)

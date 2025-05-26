@@ -1,3 +1,4 @@
+using kanban_backend.Application.Dtos;
 using kanban_backend.Domain.Interfaces;
 using kanban_backend.Infrastructure.Data.Entities;
 
@@ -22,9 +23,14 @@ namespace kanban_backend.Application.Services
             return await _repository.GetByIdAsync(id);
         }
 
-        public async Task<Carrera> CreateAsync(Carrera carrera)
+        public async Task<Carrera> CreateAsync(CarreraDTO dto)
         {
-            return await _repository.AddAsync(carrera);
+            var data = new Carrera();
+            data.Nombre = dto.Nombre;
+            data.Codigo = dto.Codigo;
+            
+            var response = await _repository.AddAsync(data);
+            return response;
         }
 
         public async Task UpdateAsync(Carrera carrera)

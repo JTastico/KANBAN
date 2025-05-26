@@ -1,3 +1,4 @@
+using kanban_backend.Application.Dtos;
 using kanban_backend.Domain.Interfaces;
 using kanban_backend.Infrastructure.Data.Entities;
 
@@ -22,10 +23,17 @@ namespace kanban_backend.Application.Services
             return await _repository.GetByIdAsync(id);
         }
 
-        public async Task<HistorialDeMovimiento> CreateAsync(HistorialDeMovimiento historial)
+        public async Task<HistorialDeMovimiento> CreateAsync(HistorialMovDTO dto)
         {
-            historial.FechaMovimiento = historial.FechaMovimiento ?? DateTime.UtcNow;
-            return await _repository.AddAsync(historial);
+            var data = new HistorialDeMovimiento();
+            data.IdTarea = dto.IdTarea;
+            data.IdColumnaOrigen = dto.IdColumnaOrigen;
+            data.IdColumnaDestino = dto.IdColumnaDestino;
+            data.FechaMovimiento = dto.FechaMovimiento;
+            data.IdUsuario = dto.IdUsuario;
+            
+            var response = await _repository.AddAsync(data);
+            return response;
         }
 
         public async Task UpdateAsync(HistorialDeMovimiento historial)

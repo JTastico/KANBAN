@@ -1,5 +1,3 @@
-﻿using System;
-using System.Collections.Generic;
 
 namespace kanban_backend.Infrastructure.Data.Entities;
 
@@ -11,9 +9,9 @@ public partial class Proyecto
 
     public string? Descripcion { get; set; }
 
-    public DateOnly? FechaInicio { get; set; }
+    public DateTime? FechaInicio { get; set; }
 
-    public DateOnly? FechaFin { get; set; }
+    public DateTime? FechaFin { get; set; }
 
     public int? IdLider { get; set; }
 

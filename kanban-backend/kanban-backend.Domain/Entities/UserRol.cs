@@ -15,7 +15,7 @@ public partial class UserRol
 
     public int? IdGrupo { get; set; }
 
-    public DateOnly? FechaAsignacion { get; set; }
+    public DateTime? FechaAsignacion { get; set; }
 
     public virtual Grupo? IdGrupoNavigation { get; set; }
 

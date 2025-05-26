@@ -1,3 +1,4 @@
+using kanban_backend.Application.Dtos;
 using kanban_backend.Domain.Interfaces;
 using kanban_backend.Infrastructure.Data.Entities;
 
@@ -22,10 +23,20 @@ namespace kanban_backend.Application.Services
             return await _repository.GetByIdAsync(id);
         }
 
-        public async Task<Tareas> CreateAsync(Tareas tarea)
+        public async Task<Tareas> CreateAsync(TareasDTO dto)
         {
-            tarea.FechaCreacion ??= DateOnly.FromDateTime(DateTime.Today);
-            return await _repository.AddAsync(tarea);
+            var data = new Tareas();
+            data.Titulo = dto.Titulo;
+            data.Descripcion = dto.Descripcion;
+            data.FechaCreacion = dto.FechaCreacion;
+            data.FechaEntrega = dto.FechaEntrega;
+            data.IdEstado = dto.IdEstado;
+            data.IdProyecto = dto.IdProyecto;
+            data.IdAsignado = dto.IdAsignado;
+            data.Prioridad = dto.Prioridad;
+            
+            var response = await _repository.AddAsync(data);
+            return response;
         }
 
         public async Task UpdateAsync(Tareas tarea)

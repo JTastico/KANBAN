@@ -1,3 +1,4 @@
+using kanban_backend.Application.Dtos;
 using kanban_backend.Domain.Interfaces;
 using kanban_backend.Infrastructure.Data.Entities;
 
@@ -22,9 +23,17 @@ namespace kanban_backend.Application.Services
             return await _repository.GetByIdAsync(id);
         }
 
-        public async Task<Usuario> CreateAsync(Usuario usuario)
+        public async Task<Usuario> CreateAsync(UsuarioDTO dto)
         {
-            return await _repository.AddAsync(usuario);
+            var data = new Usuario();
+            data.Username = dto.Username;
+            data.CorreoInstitucional = dto.CorreoInstitucional;
+            data.Contraseña = dto.Contraseña;
+            data.UltimoIngreso = dto.UltimoIngreso;
+            data.IdPersona = dto.IdPersona;
+
+            var response = await _repository.AddAsync(data);
+            return response;
         }
 
         public async Task UpdateAsync(Usuario usuario)
