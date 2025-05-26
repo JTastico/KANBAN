@@ -76,6 +76,13 @@ builder.Services.AddScoped<ProyectoService>();
 builder.Services.AddScoped<RolService>();
 //builder Tareas service
 builder.Services.AddScoped<TareasService>();
+//builder carrera service
+builder.Services.AddScoped<CarreraService>();
+//builder UserRoll service
+builder.Services.AddScoped<UserRolService>();
+//builder User service
+builder.Services.AddScoped<UsuarioService>();
+
 
 
 
